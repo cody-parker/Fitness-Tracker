@@ -15,7 +15,6 @@ public class Client {
     private String gender;
     private String activityLevel;
     private Date dateJoined;
-    private int clientDesire;
     private Macros goalMacros;
     private Macros dailyMacros;
 
@@ -117,14 +116,6 @@ public class Client {
 
     public void setDateJoined(Date dateJoined) {
         this.dateJoined = dateJoined;
-    }
-
-    public int getClientDesire(){
-        return clientDesire;
-    }
-
-    public void setClientDesire(int desire){
-        this.clientDesire = desire;
     }
 
     public Macros getGoalMacros() {
