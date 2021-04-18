@@ -21,7 +21,7 @@ public class ClientController {
     }
 
     @RequestMapping("/Clients/{id}")
-    public Client getClient(@PathVariable int id){
+    public Client getClient(@PathVariable String id){
         return clientService.getClient(id);
     }
 
@@ -31,12 +31,12 @@ public class ClientController {
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/Clients/{id}")
-    public void updateClient(@PathVariable int id,  Client client){
+    public void updateClient(@PathVariable String id,  Client client){
         clientService.updateClient(id, client);
     }
 
     @RequestMapping(method=RequestMethod.DELETE, value="/Clients/{id}")
-    public void removeClient(@PathVariable int id){
+    public void removeClient(@PathVariable String id){
         clientService.removeClient(id);
     }
 

@@ -6,8 +6,9 @@ import java.util.Date;
 
 public class Client {
 
-    private int id;
-    private String name;
+    private String id;
+    private String firstName;
+    private String lastName;
     private String height;
     private double weight;
     private Date dateJoined;
@@ -16,28 +17,37 @@ public class Client {
 
     public Client(){}
 
-    public Client(int id, String name, String height, double weight){
-        this.id = id;
-        this.name = name;
+    public Client(String firstName, String lastName, String height, double weight){
+        this.id = firstName + '-' + lastName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.height = height;
         this.weight = weight;
         this.dateJoined = new Date();
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getHeight() {
