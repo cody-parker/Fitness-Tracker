@@ -1,15 +1,15 @@
 package io.fitness.Macros;
 
-public class MacrosModel {
+public class Macros {
 
     private int calories;
     private int carbs;
     private int fats;
     private int protein;
 
-    public MacrosModel(){}
+    public Macros(){}
 
-    public MacrosModel(int calories, int carbs, int fats, int protein){
+    public Macros(int calories, int carbs, int fats, int protein){
         this.calories = calories;
         this.carbs = carbs;
         this.fats = fats;

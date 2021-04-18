@@ -1,6 +1,6 @@
 package io.fitness.Client;
 
-import io.fitness.Macros.MacrosModel;
+import io.fitness.Macros.Macros;
 
 import java.util.Date;
 
@@ -11,18 +11,38 @@ public class Client {
     private String lastName;
     private String height;
     private double weight;
+    private int age;
+    private String gender;
+    private String activityLevel;
     private Date dateJoined;
     private int clientDesire;
-    private MacrosModel macros;
+    private Macros macros;
 
     public Client(){}
 
-    public Client(String firstName, String lastName, String height, double weight){
+    public Client(String firstName, String lastName, String height, double weight, int age, int gender, String activityLevel){
         this.id = firstName + '-' + lastName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.height = height;
         this.weight = weight;
+        this.age = age;
+        if(gender == ClientExtras.MALE){
+            this.gender = "Male";
+        } else if(gender == ClientExtras.FEMALE){
+            this.gender = "Female";
+        } else {
+            this.gender = "";
+        }
+        if(activityLevel.equalsIgnoreCase(ClientExtras.EXTREME)){
+            this.activityLevel = activityLevel;
+        } else if(activityLevel.equalsIgnoreCase(ClientExtras.MODERATE)){
+            this.activityLevel = activityLevel;
+        } else if(activityLevel.equalsIgnoreCase(ClientExtras.LIGHT)){
+            this.activityLevel = activityLevel;
+        } else {
+            this.activityLevel = ClientExtras.SEDENTARY;
+        }
         this.dateJoined = new Date();
     }
 
@@ -66,6 +86,30 @@ public class Client {
         this.weight = weight;
     }
 
+    public int getAge(){
+        return age;
+    }
+
+    public void setAge(int age){
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getActivityLevel() {
+        return activityLevel;
+    }
+
+    public void setActivityLevel(String activityLevel) {
+        this.activityLevel = activityLevel;
+    }
+
     public Date getDateJoined() {
         return dateJoined;
     }
@@ -82,11 +126,11 @@ public class Client {
         this.clientDesire = desire;
     }
 
-    public MacrosModel getMacros() {
+    public Macros getMacros() {
         return macros;
     }
 
-    public void setMacros(MacrosModel macros) {
+    public void setMacros(Macros macros) {
         this.macros = macros;
     }
 }
