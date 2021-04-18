@@ -22,28 +22,30 @@ public class ClientService {
     }
 
     public Client getClient(String id){
-        return clients.stream().filter(c -> c.getId() == id).findFirst().get();
+        return clients.stream().filter(c -> c.getId().equalsIgnoreCase(id)).findFirst().get();
     }
 
-    public void addClient(Client client){
+    public Response addClient(Client client){
         clients.add(client);
+        return Response.status(Response.Status.OK).build();
     }
 
-    public void updateClient(String id, Client client) {
+    public Response updateClient(String id, Client client) {
         for(int i = 0; i < clients.size(); i++) {
-            if (clients.get(i).getId() == id) {
+            if (clients.get(i).getId().equalsIgnoreCase(id)) {
                 clients.set(i, client);
-                return;
+                return Response.status(Response.Status.OK).build();
             }
         }
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 
     public boolean removeClient(String id) {
-        return clients.removeIf(c -> c.getId() == id);
+        return clients.removeIf(c -> c.getId().equalsIgnoreCase(id));
     }
 
     public Response setClientRecommendedMacros(String id, String weightDesire) {
-        Client client = clients.stream().filter(c -> c.getId() == id).findFirst().get();
+        Client client = clients.stream().filter(c -> c.getId().equalsIgnoreCase(id)).findFirst().get();
 
         if(client != null){
             double multiplier = 1.0;
@@ -53,17 +55,37 @@ public class ClientService {
                 multiplier = ClientExtras.GAIN_WEIGHT;
             }
 
-            client.setMacros(calculateRecommendedMacros(client, multiplier));
+            client.setGoalMacros(calculateRecommendedMacros(client, multiplier));
             return Response.status(Response.Status.OK).entity(client).build();
         }
         return Response.status(Response.Status.NO_CONTENT).build();
     }
 
     public Response setClientCustomMacros(String id, Macros macros){
-        Client client = clients.stream().filter(c -> c.getId() == id).findFirst().get();
+        Client client = clients.stream().filter(c -> c.getId().equalsIgnoreCase(id)).findFirst().get();
 
         if(client != null){
-            client.setMacros(macros);
+            client.setGoalMacros(macros);
+            return Response.status(Response.Status.OK).entity(client).build();
+        }
+        return Response.status(Response.Status.NO_CONTENT).build();
+    }
+
+    public Response resetMacros(String id) {
+        Client client = clients.stream().filter(c -> c.getId().equalsIgnoreCase(id)).findFirst().get();
+
+        if(client != null){
+            client.setDailyMacros(client.getGoalMacros());
+            return Response.status(Response.Status.OK).entity(client).build();
+        }
+        return Response.status(Response.Status.NO_CONTENT).build();
+    }
+
+    public Response updateDailyMacros(String id, Macros mealMacros){
+        Client client = clients.stream().filter(c -> c.getId().equalsIgnoreCase(id)).findFirst().get();
+
+        if(client != null){
+            client.setDailyMacros(client.getDailyMacros().subtract(mealMacros));
             return Response.status(Response.Status.OK).entity(client).build();
         }
         return Response.status(Response.Status.NO_CONTENT).build();
@@ -75,10 +97,6 @@ public class ClientService {
         int fats = (int) ((calories * .25)/ClientExtras.FATS_CALORIES);
         int protein = (int) ((calories * .35)/ClientExtras.PROTEIN_CALORIES);
         return new Macros((int) calories, carbs, fats, protein);
-    }
-
-    public Macros calculateCustomMacros(Client client,int calories, int carbs, int fats, int protein){
-        return new Macros(calories, carbs, fats, protein);
     }
 
     private double calculateRecommendedCalories(String gender, int age, double weight, String height, String activityLevel){

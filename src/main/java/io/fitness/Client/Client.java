@@ -16,7 +16,8 @@ public class Client {
     private String activityLevel;
     private Date dateJoined;
     private int clientDesire;
-    private Macros macros;
+    private Macros goalMacros;
+    private Macros dailyMacros;
 
     public Client(){}
 
@@ -126,11 +127,19 @@ public class Client {
         this.clientDesire = desire;
     }
 
-    public Macros getMacros() {
-        return macros;
+    public Macros getGoalMacros() {
+        return goalMacros;
     }
 
-    public void setMacros(Macros macros) {
-        this.macros = macros;
+    public void setGoalMacros(Macros goalMacros) {
+        this.goalMacros = goalMacros;
+    }
+
+    public Macros getDailyMacros() {
+        return dailyMacros;
+    }
+
+    public void setDailyMacros(Macros dailyMacros) {
+        this.dailyMacros = dailyMacros;
     }
 }

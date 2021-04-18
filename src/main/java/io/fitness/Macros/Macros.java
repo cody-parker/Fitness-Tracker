@@ -48,4 +48,12 @@ public class Macros {
         this.protein = protein;
     }
 
+    public Macros subtract(Macros mealMacros) {
+        return new Macros(
+                this.calories - mealMacros.getCalories(),
+                this.carbs - mealMacros.getCarbs(),
+                this.fats - mealMacros.getFats(),
+                this.protein - mealMacros.getProtein()
+        );
+    }
 }

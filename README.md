@@ -3,11 +3,11 @@ General description:
 Project status: 
 	In development. 
 Planned changes: 
+	Add comments in clientcontroller to describe the path variables expected
 	Add data persistence.
-	Add the ability for clients to track macros.
-	Add recommended macros set automatically and custom macros set by a user.
+	Make sure that clients don't go over their daily macro limits?
 	Add Strength/fitness goals for clients.
-	Add way to keep track of a clients 1rm for common exercises.
+	Add way to keep track of a clients 1rm/Times for common exercises.
 Guide to installation and use:
 
 Known bugs:
