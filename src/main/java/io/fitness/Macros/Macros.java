@@ -1,14 +1,8 @@
 package io.fitness.Macros;
 
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 public class Macros {
 
     private String id;
-    @Id
     private String typeAndID;
     private int calories;
     private int carbs;
