@@ -1,11 +1,15 @@
 package io.fitness.Client;
 
-import io.fitness.Macros.Macros;
+import io.fitness.Macros.MacrosExtras;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
 
+@Entity
 public class Client {
 
+    @Id
     private String id;
     private String firstName;
     private String lastName;
@@ -15,8 +19,6 @@ public class Client {
     private String gender;
     private String activityLevel;
     private Date dateJoined;
-    private Macros goalMacros;
-    private Macros dailyMacros;
 
     public Client(){}
 
@@ -34,14 +36,14 @@ public class Client {
         } else {
             this.gender = "";
         }
-        if(activityLevel.equalsIgnoreCase(ClientExtras.EXTREME)){
+        if(activityLevel.equalsIgnoreCase(MacrosExtras.EXTREME)){
             this.activityLevel = activityLevel;
-        } else if(activityLevel.equalsIgnoreCase(ClientExtras.MODERATE)){
+        } else if(activityLevel.equalsIgnoreCase(MacrosExtras.MODERATE)){
             this.activityLevel = activityLevel;
-        } else if(activityLevel.equalsIgnoreCase(ClientExtras.LIGHT)){
+        } else if(activityLevel.equalsIgnoreCase(MacrosExtras.LIGHT)){
             this.activityLevel = activityLevel;
         } else {
-            this.activityLevel = ClientExtras.SEDENTARY;
+            this.activityLevel = MacrosExtras.SEDENTARY;
         }
         this.dateJoined = new Date();
     }
@@ -116,21 +118,5 @@ public class Client {
 
     public void setDateJoined(Date dateJoined) {
         this.dateJoined = dateJoined;
-    }
-
-    public Macros getGoalMacros() {
-        return goalMacros;
-    }
-
-    public void setGoalMacros(Macros goalMacros) {
-        this.goalMacros = goalMacros;
-    }
-
-    public Macros getDailyMacros() {
-        return dailyMacros;
-    }
-
-    public void setDailyMacros(Macros dailyMacros) {
-        this.dailyMacros = dailyMacros;
     }
 }

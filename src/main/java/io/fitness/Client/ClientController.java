@@ -44,25 +44,4 @@ public class ClientController {
         return Response.status(Response.Status.NO_CONTENT).build();
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="/Clients/{id}/Macros/Recommended/{weightDesire}")
-    public void setClientRecommendedMacros(@PathVariable String id, @PathVariable() String weightDesire){
-        clientService.setClientRecommendedMacros(id, weightDesire);
-    }
-
-    @RequestMapping(method=RequestMethod.PUT, value="/Clients/{id}/Macros/Custom")
-    public void setClientCustomMacros(@PathVariable String id, Macros macros){
-        clientService.setClientCustomMacros(id, macros);
-    }
-
-    @RequestMapping(method=RequestMethod.PUT, value="/Clients/{id}/Macros/Reset")
-    public void resetDailyMacros(@PathVariable String id){
-        clientService.resetMacros(id);
-    }
-
-    @RequestMapping(method=RequestMethod.PUT, value="/Clients/{id}/Macros/Update")
-    public void updateDailyMacros(@PathVariable String id, Macros mealMacros){
-        clientService.updateDailyMacros(id, mealMacros);
-    }
-
-    //create a page that shows total macros left in a day (tracking macros)
 }
