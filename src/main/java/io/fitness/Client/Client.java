@@ -2,10 +2,14 @@ package io.fitness.Client;
 
 import io.fitness.Macros.MacrosExtras;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
 
+@Entity
 public class Client {
 
+    @Id
     private String id;
     private String firstName;
     private String lastName;

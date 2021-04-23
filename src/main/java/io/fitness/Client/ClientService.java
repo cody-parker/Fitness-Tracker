@@ -12,6 +12,9 @@ import java.util.List;
 @Service
 public class ClientService {
 
+    @Autowired
+    ClientRepository clientRepository;
+
     List<Client> clients = new ArrayList<>(Arrays.asList(
             new Client("Cody", "Parker", "5'9", 180, 26, ClientExtras.MALE, MacrosExtras.MODERATE),
                 new Client("Donald", "McFarland", "5'10", 208, 38, ClientExtras.MALE, MacrosExtras.EXTREME),
@@ -19,7 +22,7 @@ public class ClientService {
         ));
 
     public List<Client> getAllClients(){
-        return clients;
+        return (List<Client>) clientRepository.findAll();
     }
 
     public Client getClient(String id){
